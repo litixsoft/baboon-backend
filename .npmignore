@@ -1,0 +1,17 @@
+.editorconfig
+.eslintignore
+.eslintrc
+.git*
+.idea
+.jshintrc
+.travis.yml
+baboon-backend.js
+Gruntfile.js
+validate-commit-msg.js
+api/
+config/
+build/
+config/
+scripts/
+server/
+test/

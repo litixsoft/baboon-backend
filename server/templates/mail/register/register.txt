@@ -1,0 +1,15 @@
+Thanks for your registration.
+
+Your account has been created with the following data:
+Username: {NAME}
+Name: {DISPLAYNAME}
+E-Mail: {EMAIL}
+
+Please confirm your registration by clicking the following link:
+{URL}
+
+Please keep your account data safely.
+
+
+Kind regards,
+The Litixsoft Team

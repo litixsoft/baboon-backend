@@ -1,0 +1,15 @@
+Vielen Dank für Ihre Registrierung.
+
+Ihr Zugang wurde mit folgenden Daten angelegt:
+Benutzername: {NAME}
+Name: {DISPLAYNAME}
+E-Mail: {EMAIL}
+
+Bitte bestätigen Sie ihre Registrierung, indem Sie den folgenden Link in Ihren Browser kopieren und ausführen:
+{URL}
+
+Bitte bewahren Sie ihre Zugangsdaten sicher auf.
+
+
+Mit freundlichen Grüßen
+Ihr Litixsoft Team

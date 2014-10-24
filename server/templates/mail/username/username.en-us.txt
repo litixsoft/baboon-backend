@@ -1,0 +1,7 @@
+You asked for your username.
+
+Name: {USERNAME}
+
+
+Kind Regards,
+Litixsoft Team

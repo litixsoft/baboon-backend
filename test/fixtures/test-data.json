@@ -1,0 +1,18 @@
+{
+    "bbTest": {
+        "users": [
+            {
+                "name": "Name_1",
+                "firstname": "Firstname_1"
+            },
+            {
+                "name": "Name_2",
+                "firstname": "Firstname_2"
+            },
+            {
+                "name": "Name_3",
+                "firstname": "Firstname_3"
+            }
+        ]
+    }
+}

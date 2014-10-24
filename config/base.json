@@ -1,0 +1,24 @@
+{
+    "STARTUP": {
+        "lxMongoDb.js": true,
+        "LxAuth.js": true,
+        "app.js" : true
+    },
+    "SOCKET_ENABLED": true,
+    "LX_MONGODB": [
+        {
+            "url": "mongodb://localhost:27017/baboon-backend",
+            "name": "bbTest"
+        }
+    ],
+    "WEB_TOKEN": {
+        "maxLifeTime": 604800,
+        "inactivityTime": 7200,
+        "secret": "<<YOUR_SECRET_STRING_HERE>>"
+    },
+    "API_KEYS": [
+        {"key": "<<YOUR_API_KEY_HERE>>"}
+    ],
+    "CONFIRMATION_EXPIRED_IN_DAYS": 30,
+    "PUBLIC_USER_ROLE": "Guest"
+}

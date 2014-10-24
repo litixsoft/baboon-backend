@@ -1,0 +1,84 @@
+{
+    "name": "baboon-backend",
+    "description": "REST/Socket.io API backend server, based on NodeJS - Express.",
+    "version": "0.5.1",
+    "homepage": "https://github.com/litixsoft/baboon-backend",
+    "author": "Litixsoft GmbH <info@litixsoft.de> (http://www.litixsoft.de)",
+    "maintainers": [
+        "Timo Liebetrau <t.liebetrau@litixsoft.de>",
+        "Marco Kannenberg <m.kannenberg@litixsoft.de>",
+        "Mike Alig <m.alig@litixsoft.de>",
+        "Andreas Krummsdorf <a.krummsdorf@litixsoft.de>"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/litixsoft/baboon-backend.git"
+    },
+    "bugs": {
+        "url": "https://github.com/litixsoft/baboon-backend/issues"
+    },
+    "license": "The MIT License (MIT)",
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/litixsoft/baboon-backend/blob/master/LICENSE"
+        }
+    ],
+    "keywords": [
+        "baboon web toolkit",
+        "MEAN backend",
+        "single-page backend",
+        "realtime app backend",
+        "rest api backend server",
+        "socket.io backend server"
+    ],
+    "main": "lib/index.js",
+    "engines": {
+        "node": ">=0.10.0"
+    },
+    "scripts": {
+        "test": "grunt test"
+    },
+    "dependencies": {
+        "async": "^0.9.0",
+        "debug": "^2.1.0",
+        "grunt": "^0.4.5",
+        "lodash": "^2.4.1",
+        "lx-helpers": "^0.5.1",
+        "lx-valid": "^0.2.15",
+        "method-override": "^2.3.0",
+        "mongodb": "^1.4.19",
+        "nodemailer": "^1.3.0",
+        "nodemailer-html-to-text": "1.0.0",
+        "nodemailer-pickup-transport": "0.1.1",
+        "nodemailer-smtp-pool": "0.1.8",
+        "nodemailer-smtp-transport": "0.1.13",
+        "jwt-simple": "0.2.0"
+    },
+    "devDependencies": {
+        "body-parser": "~1.9.1",
+        "cors": "^2.5.0",
+        "express": "~4.10.0",
+        "grunt-bump": "0.0.16",
+        "grunt-concurrent": "^1.0.0",
+        "grunt-contrib-clean": "^0.6.0",
+        "grunt-contrib-jshint": "^0.10.0",
+        "grunt-contrib-watch": "^0.6.1",
+        "grunt-conventional-changelog": "^1.1.0",
+        "grunt-eslint": "^1.1.0",
+        "grunt-jasmine-node": "^0.2.1",
+        "grunt-node-inspector": "^0.1.5",
+        "grunt-nodemon": "^0.3.0",
+        "grunt-open": "^0.2.3",
+        "grunt-shell-spawn": "^0.3.0",
+        "istanbul": "^0.3.2",
+        "jshint-stylish": "^1.0.0",
+        "load-grunt-tasks": "^1.0.0",
+        "morgan": "^1.4.1",
+        "node-rest-client": "^1.4.1",
+        "open": "0.0.5",
+        "socket.io": "^1.1.0",
+        "socket.io-client": "^1.1.0",
+        "time-grunt": "^1.0.0"
+    }
+}
