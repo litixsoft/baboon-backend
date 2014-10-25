@@ -1,6 +1,5 @@
 'use strict';
 
-
 var ObjectID = require('mongodb').ObjectID;
 var events = require('events');
 var _ = require('lodash');
@@ -9,7 +8,7 @@ var _ = require('lodash');
  *
  * @returns {events.EventEmitter}
  */
-var lxMongoDb = function () {
+function lxMongoDb () {
 
     var self = Object.create(events.EventEmitter.prototype);
     var connections = {};
@@ -21,16 +20,16 @@ var lxMongoDb = function () {
     /**
      * Create test data for mock
      */
-    var createTestData = function () {
+    function createTestData () {
 
         self.testData = [];
         var i, max;
 
         for (i = 0, max = 10; i < max; i += 1) {
 
-            var rec = ( i + 1);
+            var rec = i + 1;
 
-            self.testData.push (
+            self.testData.push(
                 {
                     _id: rec,
                     name: 'name_' + rec,
@@ -38,13 +37,13 @@ var lxMongoDb = function () {
                 }
             );
         }
-    };
+    }
 
     /**
      * Create a test connection with test data
      * @returns {{collection: collection}}
      */
-    var createTestConnection = function () {
+    function createTestConnection () {
 
         createTestData();
 
@@ -68,7 +67,7 @@ var lxMongoDb = function () {
                 };
             }
         };
-    };
+    }
 
     /**
      * Set test connection
@@ -108,6 +107,6 @@ var lxMongoDb = function () {
     };
 
     return self;
-};
+}
 
 module.exports = lxMongoDb();

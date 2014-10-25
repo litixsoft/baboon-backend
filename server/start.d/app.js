@@ -1,11 +1,12 @@
 'use strict';
+/*eslint no-new:0 */
 
 var baboon = require('../../lib/index');
 var express = require('express');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
-var router = express.Router();
+var router = new express.Router();
 var Routes = require('./../routes');
 var Middleware = require('./../middleware');
 var cors = require('cors');

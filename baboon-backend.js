@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/*eslint new-cap:0 */
 
 'use strict';
 

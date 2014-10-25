@@ -3,57 +3,58 @@ module.exports = function (collection, db) {
 
     var self = {};
     var val = require('lx-valid');
-    var schema = function () {
-            return {
-                properties: {
-                    _id: {
-                        type: 'string',
-                        format: 'mongo-id',
-                        key: true
+
+    function schema () {
+        return {
+            properties: {
+                _id: {
+                    type: 'string',
+                    format: 'mongo-id',
+                    key: true
+                },
+                email: {
+                    type: 'string',
+                    format: 'email',
+                    required: true
+                },
+                password: {
+                    type: 'string',
+                    dependencies: 'password2'
+                },
+                salt: {
+                    type: 'string'
+                },
+                password2: {
+                    type: 'string',
+                    conform: function (actual, data) {
+                        return actual === data.password;
                     },
-                    email: {
-                        type: 'string',
-                        format: 'email',
-                        required: true
-                    },
-                    password: {
-                        type: 'string',
-                        dependencies: 'password2'
-                    },
-                    salt: {
-                        type: 'string'
-                    },
-                    password2: {
-                        type: 'string',
-                        conform: function (actual, data) {
-                            return actual === data.password;
-                        },
-                        messages: {
-                            conform: 'Die Passwörter stimmen nicht überein.'
-                        }
-                    },
-                    lastName: {
-                        type: 'string',
-                        required: true,
-                        maxLength: 100,
-                        minLength: 4
-                    },
-                    firstName: {
-                        type: 'string',
-                        required: true,
-                        maxLength: 100,
-                        minLength: 4
-                    },
-                    is_active: {
-                        type: 'boolean'
-                    },
-                    register_date: {
-                        type: 'string',
-                        format: 'date-time'
+                    messages: {
+                        conform: 'Die Passwörter stimmen nicht überein.'
                     }
+                },
+                lastName: {
+                    type: 'string',
+                    required: true,
+                    maxLength: 100,
+                    minLength: 4
+                },
+                firstName: {
+                    type: 'string',
+                    required: true,
+                    maxLength: 100,
+                    minLength: 4
+                },
+                is_active: {
+                    type: 'boolean'
+                },
+                register_date: {
+                    type: 'string',
+                    format: 'date-time'
                 }
-            };
+            }
         };
+    }
 
     var validationFunction = val.getValidationFunction({
         deleteUnknownProperties: true,

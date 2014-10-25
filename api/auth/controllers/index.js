@@ -30,14 +30,14 @@ module.exports = function (injects) {
      * @param b
      * @returns {number}
      */
-    var dateDiffInDays = function (a, b) {
+    function dateDiffInDays (a, b) {
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
         var utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
         var utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
 
         return Math.floor((utc1 - utc2) / _MS_PER_DAY);
-    };
+    }
 
     /**
      * Create a user
@@ -46,7 +46,7 @@ module.exports = function (injects) {
      * @param pwd
      * @param next
      */
-    var createUser = function (user, pwd, next) {
+    function createUser (user, pwd, next) {
         // create password hash with random salt
         crypto.hashWithRandomSalt(pwd, function (error, result) {
             user.password = result.password;
@@ -60,7 +60,7 @@ module.exports = function (injects) {
                 usersRepo.insert(user, next);
             });
         });
-    };
+    }
 
     /**
      * Send mail to user
@@ -68,22 +68,22 @@ module.exports = function (injects) {
      * @param options
      * @param next
      */
-    var sendMailToUser = function (options, next) {
+    function sendMailToUser (options, next) {
         options = options || {};
         var url = options.url + '/' + options.user.token;  // for register
-        var message = { from: config.MAIL.senderAddress, to: options.user.email, subject: options.messageSubject };
+        var message = {from: config.MAIL.senderAddress, to: options.user.email, subject: options.messageSubject};
         var file = options.file;
 
         var replaceValues = [
-            { key: '{LASTNAME}', value: options.user.lastname },
-            { key: '{FIRSTNAME}', value: options.user.firstname },
-            { key: '{EMAIL}', value: options.user.email },
-            { key: '{URL}', value: url },
-            { key: '{PASSWORD}', value: options.user.password }
+            {key: '{LASTNAME}', value: options.user.lastname},
+            {key: '{FIRSTNAME}', value: options.user.firstname},
+            {key: '{EMAIL}', value: options.user.email},
+            {key: '{URL}', value: url},
+            {key: '{PASSWORD}', value: options.user.password}
         ];
 
         mail.sendMailFromTemplate(message, path.join(file, file + '.html'), path.join(file, file + '.txt'), replaceValues, next);
-    };
+    }
 
     /**
      * Generate a new password and update the user with it
@@ -91,10 +91,10 @@ module.exports = function (injects) {
      * @param data
      * @param next
      */
-    var resetPassword = function (data, next) {
+    function resetPassword (data, next) {
         var err;
 
-        usersRepo.findOne({ email: data.email }, { fields: ['_id', 'password', 'salt'] }, function (error, userResult) {
+        usersRepo.findOne({email: data.email}, {fields: ['_id', 'password', 'salt']}, function (error, userResult) {
             if (error || !userResult) {
                 err = new Error('No user found in db');
                 err.status = 404;
@@ -103,13 +103,18 @@ module.exports = function (injects) {
 
             crypto.randomString(6, function (error, randomString) {
                 crypto.hashWithRandomSalt(randomString, function (error, result) {
-                    usersRepo.update({ _id: userResult._id }, { $set: { password: result.password, password_salt: result.salt } }, function (error) {
+                    usersRepo.update({_id: userResult._id}, {
+                        $set: {
+                            password: result.password,
+                            password_salt: result.salt
+                        }
+                    }, function (error) {
                         next(error, randomString);
                     });
                 });
             });
         });
-    };
+    }
 
     /**
      * Login
@@ -119,7 +124,7 @@ module.exports = function (injects) {
      * @param res
      * @param next
      */
-    self.login = function index(req, res, next) {
+    self.login = function index (req, res, next) {
         if (!req.body || !req.body.email || !req.body.password) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -131,7 +136,17 @@ module.exports = function (injects) {
         var email = req.body.email.trim();
         var password = req.body.password.trim();
 
-        usersRepo.find({email: email}, {fields: {_id: 1, email: 1, password: 1, password_salt: 1, roles: 1, rights: 1, is_active: 1}}).toArray(function (err, success) {
+        usersRepo.find({email: email}, {
+            fields: {
+                _id: 1,
+                email: 1,
+                password: 1,
+                password_salt: 1,
+                roles: 1,
+                rights: 1,
+                is_active: 1
+            }
+        }).toArray(function (err, success) {
             if (success && success.length > 0) {
                 var user = success[0];
 
@@ -174,7 +189,7 @@ module.exports = function (injects) {
      * @param next
      * @returns {*}
      */
-    self.register = function index(req, res, next) {
+    self.register = function index (req, res, next) {
         if (!req.body) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -234,7 +249,7 @@ module.exports = function (injects) {
                         return next(new errors.BadRequestError('Could not send email'));
                     }
 
-                    res.status(200).json({ success: true });
+                    res.status(200).json({success: true});
                     next();
                 });
             }]
@@ -249,36 +264,43 @@ module.exports = function (injects) {
      * @param res
      * @param next
      */
-    self.confirmRegister = function index(req, res, next) {
+    self.confirmRegister = function index (req, res, next) {
         var err;
 
         // get user with token from req
-        usersRepo.findOne({ token: req.params.id }, { fields: ['_id', 'register_date', 'is_active'] }, function (error, result) {
+        usersRepo.findOne({token: req.params.id}, {fields: ['_id', 'register_date', 'is_active']}, function (error, result) {
             if (error) {
                 return next(new errors.BadRequestError('Unknown db error by users.confirm'));
             }
-            else if (!result) {
+
+            if (!result) {
                 err = new Error('No user found in db');
                 err.status = 404;
                 return next(err);
             }
-            else {
-                // check if period of confirmation is expired
-                if (dateDiffInDays(new Date(), result.register_date) > config.CONFIRMATION_EXPIRED_IN_DAYS) {
-                    err = new Error('The period of the confirmation has expired.');
-                    err.status = 409;
-                    return next(err);
-                }
-                else {
-                    usersRepo.update({ _id: result._id }, { $set: { is_active: true }, $unset: { token: 1 } }, { multi: false }, function (error, updateResult) {
+
+            // check if period of confirmation is expired
+            if (dateDiffInDays(new Date(), result.register_date) > config.CONFIRMATION_EXPIRED_IN_DAYS) {
+                err = new Error('The period of the confirmation has expired.');
+                err.status = 409;
+                next(err);
+            } else {
+                usersRepo.update(
+                    {_id: result._id},
+                    {
+                        $set: {is_active: true},
+                        $unset: {token: 1}
+                    },
+                    {multi: false},
+                    function (error, updateResult) {
                         if (error || !updateResult) {
                             return next(new errors.BadRequestError('Unknown db error by users.confirm'));
                         }
 
-                        return res.status(200).json({ success: true });
+                        res.status(200).json({success: true});
                     });
-                }
             }
+
         });
     };
 
@@ -290,7 +312,7 @@ module.exports = function (injects) {
      * @param res
      * @param next
      */
-    self.renewConfirmationMail = function index(req, res, next) {
+    self.renewConfirmationMail = function index (req, res, next) {
         if (!req.body) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -303,22 +325,22 @@ module.exports = function (injects) {
             function (error, result) {
                 if (error) {
                     return next(error || new errors.BadRequestError('Unknown db error by users.confirm'));
-                } else {
-                    var options = {
-                        user: result,
-                        url: req.body.url,
-                        messageSubject: 'Register',
-                        file: 'register'
-                    };
-
-                    sendMailToUser(options, function (error) {
-                        if (error) {
-                            return next(error || new errors.BadRequestError('Could not send mail'));
-                        }
-
-                        res.status(200).json({ success: true });
-                    });
                 }
+
+                var options = {
+                    user: result,
+                    url: req.body.url,
+                    messageSubject: 'Register',
+                    file: 'register'
+                };
+
+                sendMailToUser(options, function (error) {
+                    if (error) {
+                        return next(error || new errors.BadRequestError('Could not send mail'));
+                    }
+
+                    res.status(200).json({success: true});
+                });
             }
         );
     };
@@ -332,7 +354,7 @@ module.exports = function (injects) {
      * @param next
      * @returns {*}
      */
-    self.resetPassword = function index(req, res, next) {
+    self.resetPassword = function index (req, res, next) {
         if (!req.body) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -360,21 +382,21 @@ module.exports = function (injects) {
             if (error) {
                 // throw error while trying to save the new user
                 return next(error || new errors.BadRequestError('Unknown db error by users.resetPassword'));
-            } else {
-                var options = {
-                    user: {email: req.body.email, password: result },
-                    messageSubject: 'Your new password',
-                    file: 'password'
-                };
-
-                sendMailToUser(options, function (error) {
-                    if (error) {
-                        return next(error || new errors.BadRequestError('Could not send mail'));
-                    }
-
-                    res.status(200).json({ success: true });
-                });
             }
+
+            var options = {
+                user: {email: req.body.email, password: result},
+                messageSubject: 'Your new password',
+                file: 'password'
+            };
+
+            sendMailToUser(options, function (error) {
+                if (error) {
+                    return next(error || new errors.BadRequestError('Could not send mail'));
+                }
+
+                res.status(200).json({success: true});
+            });
         });
     };
 

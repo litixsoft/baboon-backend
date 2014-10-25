@@ -258,16 +258,16 @@ module.exports = function (grunt) {
     /**
      * Test tasks
      *
-     * Task test start jshint and all jasmine tests
-     * Task test:jshint start only jshint tests
+     * Task test start eslint and all jasmine tests
+     * Task test:eslint start only eslint tests
      * Task test:unit start only unit tests
      * Task test:regApi start only regression api tests
      */
     grunt.registerTask('test', function (target) {
 
-        // Task test:jshint
-        if (target === 'jshint') {
-            return grunt.task.run(['jshint:test']);
+        // Task test:eslint
+        if (target === 'eslint') {
+            return grunt.task.run(['eslint:all']);
         }
 
         // Task test:unit
@@ -281,7 +281,7 @@ module.exports = function (grunt) {
         }
 
         // Task test
-        grunt.task.run(['jshint:test', 'jasmine_node:all']);
+        grunt.task.run(['eslint:all', 'jasmine_node:all']);
     });
 
     /**
@@ -300,8 +300,8 @@ module.exports = function (grunt) {
      */
     grunt.registerTask('ci', [
         'clean:reports',
-        'jshint:jslint',
-        'jshint:checkstyle',
+        'eslint:jslint',
+        'eslint:checkstyle',
         'jasmine_node:ci',
         'shell:coverage',
         'shell:cobertura'

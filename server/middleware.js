@@ -1,4 +1,5 @@
 'use strict';
+/*eslint no-unused-vars:0 */
 
 var _ = require('lodash');
 
@@ -49,15 +50,14 @@ module.exports = function (options) {
             var hasAccess = options.auth.checkAccessToRoute(req.route.path, user.acl);
 
             if (hasAccess) {
-                return next();
+                next();
             } else {
-                return next(new options.errors.AccessError());
+                next(new options.errors.AccessError());
             }
         });
     };
 
     self.errorHandler = function (err, req, res, next) {
-        next = null;
         var status = 500;
         var message = 'Internal server error';
 
