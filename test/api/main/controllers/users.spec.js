@@ -21,7 +21,7 @@ describe('API Tests main/controllers/users', function () {
     it('getAll should return an error', function (done) {
 
         db.behavior.findError = true;
-        usersTest.getAll(null, null, function(err) {
+        usersTest.getAll(null, null, function (err) {
             expect(err.message).toBe('lxMongoDb_MOCK find error');
             done();
         });
@@ -30,7 +30,7 @@ describe('API Tests main/controllers/users', function () {
     it('getById should return an error', function (done) {
 
         db.behavior.findError = true;
-        usersTest.getById({params:{id:'53baeb8da234dc09d1000002'}}, null, function(err) {
+        usersTest.getById({params: {id: '53baeb8da234dc09d1000002'}}, null, function (err) {
             expect(err.message).toBe('lxMongoDb_MOCK find error');
             done();
         });

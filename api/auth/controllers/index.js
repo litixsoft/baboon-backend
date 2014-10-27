@@ -147,6 +147,10 @@ module.exports = function (injects) {
                 is_active: 1
             }
         }).toArray(function (err, success) {
+            if (err) {
+                return next(err);
+            }
+
             if (success && success.length > 0) {
                 var user = success[0];
 
@@ -175,7 +179,7 @@ module.exports = function (injects) {
                     }
                 });
             } else {
-                return next(err || new errors.BadRequestError('Unknown db error by users.find'));
+                return next(new errors.AccessError('User not found: ' + email));
             }
         });
     };

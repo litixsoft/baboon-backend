@@ -59,7 +59,6 @@ module.exports = function (injects) {
         res.status(200).json(thingsArr);
     };
 
-
     /**
      * AwesomeThingsSocket
      *
@@ -70,9 +69,9 @@ module.exports = function (injects) {
      */
     self.socket_awesomeThings = function socket_awesomeThings (data, socket, callback) {
         if (callback) {
-            callback(null, {status:200, data:thingsArr});
+            callback(null, {status: 200, data: thingsArr});
         } else {
-            socket.emit('awesomeThings', {status:200, data:thingsArr});
+            socket.emit('awesomeThings', {status: 200, data: thingsArr});
         }
     };
 

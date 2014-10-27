@@ -84,7 +84,7 @@ module.exports = function (options, next) {
 
     // Make lxSocketRouter placeholder object with mock function.
     // When SOCKET_ENABLED true then overwrite this object.
-    var lxSocketRouter = {on:function(){}};
+    var lxSocketRouter = {on: function () {}};
 
     // Check if socket enabled, when enabled create instance
     // of lxSocketRouter and register the connection event
@@ -110,14 +110,6 @@ module.exports = function (options, next) {
 
     // export server to options
     options.server = server;
-
-
-//    if (options.auth) {
-//        options.auth.refreshRightsInDb(function (err, res) {
-//            console.log(res);
-//        });
-//    }
-
 
     // next callback
     next();

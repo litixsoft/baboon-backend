@@ -11,6 +11,7 @@
             "name": "bbTest"
         }
     ],
+    "RIGHTS_DATABASE" : "bbTest",
     "WEB_TOKEN": {
         "maxLifeTime": 604800,
         "inactivityTime": 7200,
