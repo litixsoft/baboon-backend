@@ -1,3 +1,12 @@
+<a name="0.5.4"></a>
+### 0.5.4 (2014-10-27)
+
+
+#### Bug Fixes
+
+* remove hard coded connection name in LxAuth ([c7e38c2b](https://github.com/litixsoft/baboon-backend/commit/c7e38c2b3c1f22de0bfab67de581ddb83ef56cb0))
+
+
 <a name="0.5.3"></a>
 ### 0.5.3 (2014-10-24)
 
