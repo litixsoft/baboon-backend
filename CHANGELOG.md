@@ -1,3 +1,12 @@
+<a name="0.5.6"></a>
+### 0.5.6 (2014-11-06)
+
+
+#### Features
+
+* add user id to token collection
+
+
 <a name="0.5.5"></a>
 ### 0.5.5 (2014-10-30)
 
