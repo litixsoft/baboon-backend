@@ -13,7 +13,7 @@ var root = path.join(__dirname, '..', '..');
 var config = new baboon.LxConfig(root);
 var lxMongoDb = baboon.lxMongoDb;
 var base = 'http://' + config.HOST + ':' + config.PORT;
-var io = require('socket.io-client');
+var io = require(require('path').join(process.cwd(), 'node_modules', 'socket.io', 'node_modules', 'socket.io-client'));
 var isRunning = false;
 var socket;
 var server;
