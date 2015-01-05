@@ -20,6 +20,7 @@
         "no-extra-parens": 2,
         "no-lonely-if": 2,
         "no-self-compare": 2,
+        "no-shadow": 1,
         "no-trailing-spaces": 2,
         "no-underscore-dangle": 0,
         "no-undefined": 0,
