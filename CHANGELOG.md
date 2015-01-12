@@ -1,3 +1,18 @@
+<a name="0.6.0"></a>
+## 0.6.0 (2015-01-12)
+
+
+#### Bug Fixes
+
+* LxMail, fix in function configureMail to override email address in debug mode ([a3576fb0](https://github.com/litixsoft/baboon-backend/commit/a3576fb074241d97a5bcdc58ad216d3658b759aa))
+
+
+#### Features
+
+* store complete user object in token database ([8fa5d1fc](https://github.com/litixsoft/baboon-backend/commit/8fa5d1fcb09fb6a8668da245d58ae5d4e68f9cae))
+* add expires_last_activity field in token database. ([e787a902](https://github.com/litixsoft/baboon-backend/commit/e787a902e501779ec56c6c6fc8d8611905fbb427))
+
+
 <a name="0.5.7"></a>
 ### 0.5.7 (2014-11-14)
 
