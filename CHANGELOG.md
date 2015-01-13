@@ -1,3 +1,12 @@
+<a name="0.6.1"></a>
+### 0.6.1 (2015-01-13)
+
+
+#### Bug Fixes
+
+* last_activity time is now calculated correctly ([e70c3e5d](https://github.com/litixsoft/baboon-backend/commit/e70c3e5db3ccf4ca3d30a3033407b44651f7dbe4))
+
+
 <a name="0.6.0"></a>
 ## 0.6.0 (2015-01-12)
 
