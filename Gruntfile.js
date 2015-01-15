@@ -58,35 +58,6 @@ module.exports = function (grunt) {
         },
 
         // Make sure code styles are up to par and there are no obvious mistakes
-        jshint: {
-            options: {
-                jshintrc: '.jshintrc',
-                reporter: require('jshint-stylish')
-            },
-            test: {
-                src: '<%= src.lint %>'
-            },
-            jslint: {
-                options: {
-                    reporter: 'jslint',
-                    reporterOutput: '<%= src.reports %>/lint/jshint.xml'
-                },
-                files: {
-                    src: '<%= src.lint %>'
-                }
-            },
-            checkstyle: {
-                options: {
-                    reporter: 'checkstyle',
-                    reporterOutput: '<%= src.reports %>/lint/jshint_checkstyle.xml'
-                },
-                files: {
-                    src: '<%= src.lint %>'
-                }
-            }
-        },
-
-        // Make sure code styles are up to par and there are no obvious mistakes
         eslint: {
             all: {
                 src: '<%= src.lint %>'
