@@ -1,3 +1,17 @@
+<a name="0.7.0"></a>
+## 0.7.0 (2015-01-15)
+
+
+#### Bug Fixes
+
+* crash when no user in token ([06840786](https://github.com/litixsoft/baboon-backend/commit/06840786dc533b579436893705c8e97d4f249876))
+
+
+#### Features
+
+* save http verb in rights collection ([38f54830](https://github.com/litixsoft/baboon-backend/commit/38f5483092d9869f946796dcd0fc13974e7bf788))
+
+
 <a name="0.6.1"></a>
 ### 0.6.1 (2015-01-13)
 
