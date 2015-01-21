@@ -1,3 +1,12 @@
+<a name="0.7.1"></a>
+### 0.7.1 (2015-01-21)
+
+
+#### Features
+
+* **LxMail:** add original receiver of the email in the mail body when debug option is enabled ([a79841a4](https://github.com/litixsoft/baboon-backend/commit/a79841a455e9149782b2c2d643afc25b1f176028))
+
+
 <a name="0.7.0"></a>
 ## 0.7.0 (2015-01-15)
 
