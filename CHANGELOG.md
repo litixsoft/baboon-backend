@@ -1,3 +1,12 @@
+<a name="0.7.2"></a>
+### 0.7.2 (2015-01-21)
+
+
+#### Features
+
+* update to lx-valid v0.4.0 ([31d162ab](https://github.com/litixsoft/baboon-backend/commit/31d162ab6fa8e95c589425258c60d6995be41b1e))
+
+
 <a name="0.7.1"></a>
 ### 0.7.1 (2015-01-21)
 
