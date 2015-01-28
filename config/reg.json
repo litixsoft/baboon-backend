@@ -1,0 +1,24 @@
+{
+    "STARTUP": {
+        "LxAuth.js": false
+    },
+    "LX_MONGODB": [
+        {
+            "url": "mongodb://localhost:27017/baboon-backend-test",
+            "name": "bbTest"
+        }
+    ],
+    "MAIL": {
+        "senderAddress": "sender@host.com",
+        "templatePath": "./server/templates/mail",
+        "type": "SMTP",
+        "directory": "./.tmp",
+        "auth": {
+            "user": "username",
+            "pass": "password"
+        },
+        "host": "host.name",
+        "port": 25,
+        "domain": "domain.name"
+    }
+}

@@ -1,7 +1,7 @@
 'use strict';
 
 // Environment default settings
-process.env.NODE_ENV = process.env.NODE_ENV || 'testRights';
+process.env.NODE_ENV = process.env.NODE_ENV || 'reg1';
 process.env.PORT = process.env.PORT || 3001;
 process.env.HOST = process.env.HOST || '127.0.0.1';
 
