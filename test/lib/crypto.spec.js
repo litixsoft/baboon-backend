@@ -112,7 +112,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is a string', function () {
             sut.randomString('dd', function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toBe('Argument #1 must be number > 0');
+                expect(err.message).toContain('number');
                 expect(res).toBeUndefined();
             });
         });
