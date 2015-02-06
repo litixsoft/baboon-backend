@@ -62,7 +62,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is a string', function () {
             sut.randomBytes('dd', function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -70,7 +70,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is a string', function () {
             sut.randomBytes('10', function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -78,7 +78,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is null', function () {
             sut.randomBytes(null, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -86,7 +86,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is undefined', function () {
             sut.randomBytes(undefined, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -94,7 +94,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is an object', function () {
             sut.randomBytes({}, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -120,7 +120,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is a string', function () {
             sut.randomString('10', function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -128,7 +128,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is null', function () {
             sut.randomString(null, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -136,7 +136,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is undefined', function () {
             sut.randomString(undefined, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
@@ -144,7 +144,7 @@ describe('LxCrypto', function () {
         it('should return an error when param length is an object', function () {
             sut.randomString({}, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toContain('must be number > 0');
+                expect(err.message).toContain('must be number');
                 expect(res).toBeUndefined();
             });
         });
