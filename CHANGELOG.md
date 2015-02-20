@@ -1,3 +1,12 @@
+<a name="0.7.3"></a>
+### 0.7.3 (2015-02-20)
+
+
+#### Features
+
+* update dependencies for io.js / node.js 0.12 compatibility ([d883d475](https://github.com/litixsoft/baboon-backend/commit/d883d475b2ded8dad891c40714598d042ec70d46))
+
+
 <a name="0.7.2"></a>
 ### 0.7.2 (2015-01-21)
 
