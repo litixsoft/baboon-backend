@@ -1,3 +1,17 @@
+<a name="0.7.4"></a>
+### 0.7.4 (2015-02-25)
+
+
+#### Bug Fixes
+
+* **middleware:** next() could be called twice in middleware allRequests() ([739ce9fa](https://github.com/litixsoft/baboon-backend/commit/739ce9fae9b3e15ba2f64c852cc113466d1efe9f))
+
+
+#### Features
+
+* **lxErrors:** add DataOperationError to track errors like not data was found in the db or a re ([f40948c1](https://github.com/litixsoft/baboon-backend/commit/f40948c19f9c8ccf5120c465c3b8c0fa6ec29d3b))
+
+
 <a name="0.7.3"></a>
 ### 0.7.3 (2015-02-20)
 
