@@ -23,11 +23,10 @@ module.exports = function (options) {
         });
 
         if (!found) {
-            var err = new options.errors.AuthError();
-            next(err);
+            next(new options.errors.AuthError());
+        } else {
+            next();
         }
-
-        next();
     };
 
     self.auth = function (req, res, next) {
