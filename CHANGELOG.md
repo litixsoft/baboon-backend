@@ -1,3 +1,18 @@
+<a name="0.5.8"></a>
+### 0.5.8 (2015-02-26)
+
+
+#### Bug Fixes
+
+* **LxMail:** set mail.to from debug when config.debug is set ([cc4214e6](https://github.com/litixsoft/baboon-backend/commit/cc4214e613c2c30a8172a792c58a286e7184cbe8))
+* **middleware:** next could not be called in middleware allRequest() ([f1756627](https://github.com/litixsoft/baboon-backend/commit/f17566272fb8acc478da76a234eb2aa791326c05))
+
+
+#### Features
+
+* **LxMail:** add original receiver of the email in the mail body when debug option is enabled ([c094dc3a](https://github.com/litixsoft/baboon-backend/commit/c094dc3ac3445b4c28c11c3945335cfa3941a166))
+
+
 <a name="0.5.7"></a>
 ### 0.5.7 (2014-11-14)
 
