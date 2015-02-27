@@ -1,3 +1,12 @@
+<a name="0.5.9"></a>
+### 0.5.9 (2015-02-27)
+
+
+#### Bug Fixes
+
+* **LxMail:** replace all occurrences of replace values ([912fff48](https://github.com/litixsoft/baboon-backend/commit/912fff48522e8d3fb7c4ba0def16f7e768b3fd83))
+
+
 <a name="0.5.8"></a>
 ### 0.5.8 (2015-02-26)
 
