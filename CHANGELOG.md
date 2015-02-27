@@ -1,3 +1,27 @@
+<a name="0.7.5"></a>
+### 0.7.5 (2015-02-27)
+
+
+#### Bug Fixes
+
+* crash when no user in token ([06840786](https://github.com/litixsoft/baboon-backend/commit/06840786dc533b579436893705c8e97d4f249876))
+* last_activity time is now calculated correctly ([e70c3e5d](https://github.com/litixsoft/baboon-backend/commit/e70c3e5db3ccf4ca3d30a3033407b44651f7dbe4))
+* LxMail, fix in function configureMail to override email address in debug mode ([a3576fb0](https://github.com/litixsoft/baboon-backend/commit/a3576fb074241d97a5bcdc58ad216d3658b759aa))
+* **LxMail:** replace all occurrences of replace values ([1eed6046](https://github.com/litixsoft/baboon-backend/commit/1eed604694f9a983736d09e6271d9486433e17a6))
+* **middleware:** next() could be called twice in middleware allRequests() ([739ce9fa](https://github.com/litixsoft/baboon-backend/commit/739ce9fae9b3e15ba2f64c852cc113466d1efe9f))
+
+
+#### Features
+
+* update dependencies for io.js / node.js 0.12 compability ([d883d475](https://github.com/litixsoft/baboon-backend/commit/d883d475b2ded8dad891c40714598d042ec70d46))
+* update to lx-valid v0.4.0 ([31d162ab](https://github.com/litixsoft/baboon-backend/commit/31d162ab6fa8e95c589425258c60d6995be41b1e))
+* save http verb in rights collection ([38f54830](https://github.com/litixsoft/baboon-backend/commit/38f5483092d9869f946796dcd0fc13974e7bf788))
+* store complete user object in token database ([8fa5d1fc](https://github.com/litixsoft/baboon-backend/commit/8fa5d1fcb09fb6a8668da245d58ae5d4e68f9cae))
+* add expires_last_activity field in token database. ([e787a902](https://github.com/litixsoft/baboon-backend/commit/e787a902e501779ec56c6c6fc8d8611905fbb427))
+* **LxMail:** add original receiver of the email in the mail body when debug option is enabled ([a79841a4](https://github.com/litixsoft/baboon-backend/commit/a79841a455e9149782b2c2d643afc25b1f176028))
+* **lxErrors:** add DataOperationError to track errors like not data was found in the db or a re ([f40948c1](https://github.com/litixsoft/baboon-backend/commit/f40948c19f9c8ccf5120c465c3b8c0fa6ec29d3b))
+
+
 <a name="0.7.4"></a>
 ### 0.7.4 (2015-02-25)
 
@@ -75,6 +99,30 @@
 
 * store complete user object in token database ([8fa5d1fc](https://github.com/litixsoft/baboon-backend/commit/8fa5d1fcb09fb6a8668da245d58ae5d4e68f9cae))
 * add expires_last_activity field in token database. ([e787a902](https://github.com/litixsoft/baboon-backend/commit/e787a902e501779ec56c6c6fc8d8611905fbb427))
+
+
+<a name="0.5.9"></a>
+### 0.5.9 (2015-02-27)
+
+
+#### Bug Fixes
+
+* **LxMail:** replace all occurrences of replace values ([912fff48](https://github.com/litixsoft/baboon-backend/commit/912fff48522e8d3fb7c4ba0def16f7e768b3fd83))
+
+
+<a name="0.5.8"></a>
+### 0.5.8 (2015-02-26)
+
+
+#### Bug Fixes
+
+* **LxMail:** set mail.to from debug when config.debug is set ([cc4214e6](https://github.com/litixsoft/baboon-backend/commit/cc4214e613c2c30a8172a792c58a286e7184cbe8))
+* **middleware:** next could not be called in middleware allRequest() ([f1756627](https://github.com/litixsoft/baboon-backend/commit/f17566272fb8acc478da76a234eb2aa791326c05))
+
+
+#### Features
+
+* **LxMail:** add original receiver of the email in the mail body when debug option is enabled ([c094dc3a](https://github.com/litixsoft/baboon-backend/commit/c094dc3ac3445b4c28c11c3945335cfa3941a166))
 
 
 <a name="0.5.7"></a>
