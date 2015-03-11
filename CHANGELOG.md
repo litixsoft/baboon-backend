@@ -1,3 +1,12 @@
+<a name="0.7.6"></a>
+### 0.7.6 (2015-03-11)
+
+
+#### Features
+
+* **lxAuth:** add method removeToken() to remove a token from the database ([aa1a0255](https://github.com/litixsoft/baboon-backend/commit/aa1a0255d687f4390f160625c36d5c3edef54752))
+
+
 <a name="0.7.5"></a>
 ### 0.7.5 (2015-02-27)
 
