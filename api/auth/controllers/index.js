@@ -404,5 +404,27 @@ module.exports = function (injects) {
         });
     };
 
+    /**
+     * Logout
+     *
+     * @roles User
+     * @param req
+     * @param res
+     * @param next
+     */
+    self.logout = function (req, res, next) {
+        auth.removeToken(req.headers['x-access-token'], function (error, result) {
+            if (error) {
+                return next(new errors.BadRequestError('Logout Failed'));
+            }
+
+            if (result && result.result.n > 0) {
+                res.status(200).json({success: true});
+            } else {
+                next(new errors.DataOperationError('Logout Failed', req.headers['x-access-token'], 'token', result));
+            }
+        });
+    };
+
     return self;
 };

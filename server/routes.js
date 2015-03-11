@@ -14,6 +14,7 @@ module.exports = function (router, controller, middleware, socketRouter) {
 
     // Register auth routes
     router.post('/auth/account/login', controller.get('/auth/index').login);
+    router.post('/auth/account/logout', controller.get('/auth/index').logout);
     router.get('/auth/account/confirmation/:id', controller.get('/auth/index').confirmRegister);
     router.post('/auth/account/renew', controller.get('/auth/index').renewConfirmationMail);
     router.post('/auth/account/register', controller.get('/auth/index').register);
