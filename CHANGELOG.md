@@ -1,3 +1,12 @@
+<a name="0.7.7"></a>
+### 0.7.7 (2015-03-19)
+
+
+#### Features
+
+* add env variable CONFIG which will be used to load the configuration file. If no ([a7970a13](https://github.com/litixsoft/baboon-backend/commit/a7970a138d98d30ceffa2d9909ff7492521997d0))
+
+
 <a name="0.7.6"></a>
 ### 0.7.6 (2015-03-11)
 
