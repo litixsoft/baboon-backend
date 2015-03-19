@@ -65,7 +65,7 @@ module.exports = function (grunt) {
             jslint: {
                 options: {
                     format: 'jslint-xml',
-                    'output-file': '<%= src.reports %>/lint/eslint.xml'
+                    outputFile: '<%= src.reports %>/lint/eslint.xml'
                 },
                 files: {
                     src: '<%= src.lint %>'
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
             checkstyle: {
                 options: {
                     format: 'checkstyle',
-                    'output-file': '<%= src.reports %>/lint/eslint_checkstyle.xml'
+                    outputFile: '<%= src.reports %>/lint/eslint_checkstyle.xml'
                 },
                 files: {
                     src: '<%= src.lint %>'
