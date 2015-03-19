@@ -129,7 +129,7 @@ Start the application without Live reload. The configuration of the command can 
 Start the application manually without live reload. Note here the environment variables.
 This command is run in the background when npm start
 
-    $ DEBUG=* PORT=3000 HOST=localhost NODE_ENV=development node baboon-backend.js
+    $ DEBUG=* PORT=3000 HOST=localhost NODE_ENV=development CONFIG=test node baboon-backend.js
     
 ### Debug
 We debug the application frequently about our WebStorm IDE. But you can also debug your app with nodemon and node-inspector.
