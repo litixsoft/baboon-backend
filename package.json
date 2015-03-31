@@ -1,7 +1,7 @@
 {
     "name": "baboon-backend",
     "description": "REST/Socket.io API backend server, based on NodeJS - Express.",
-    "version": "0.7.7",
+    "version": "0.7.8",
     "homepage": "https://github.com/litixsoft/baboon-backend",
     "author": "Litixsoft GmbH <info@litixsoft.de> (http://www.litixsoft.de)",
     "maintainers": [

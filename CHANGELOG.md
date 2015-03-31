@@ -1,3 +1,12 @@
+<a name"0.7.8"></a>
+### 0.7.8 (2015-03-31)
+
+
+#### Features
+
+* discrete client message in errors, e.g. to discriminate between short error mess ([12e3415e](https://github.com/litixsoft/baboon-backend/commit/12e3415e))
+
+
 <a name="0.7.7"></a>
 ### 0.7.7 (2015-03-19)
 
