@@ -73,8 +73,9 @@ module.exports = function (options) {
 
         } else {
 
-            // Production mode, delete the stack
+            // Production mode, delete the stack, set message to client message
             err.stack = null;
+            err.message = err.clientMessage || err.message;
             res.status(err.status).json(err);
         }
     };
