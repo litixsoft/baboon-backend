@@ -1,3 +1,12 @@
+<a name"0.7.9"></a>
+### 0.7.9 (2015-04-01)
+
+
+#### Bug Fixes
+
+* remove connection information from dbResult in DataOperationError ([dafa777a](https://github.com/litixsoft/baboon-backend/commit/dafa777a))
+
+
 <a name"0.7.8"></a>
 ### 0.7.8 (2015-03-31)
 
