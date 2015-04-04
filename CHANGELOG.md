@@ -1,3 +1,12 @@
+<a name"0.7.10"></a>
+### 0.7.10 (2015-04-04)
+
+
+#### Bug Fixes
+
+* check if result exists before deleting the connection property from result ([f6e10146](https://github.com/litixsoft/baboon-backend/commit/f6e10146))
+
+
 <a name"0.7.9"></a>
 ### 0.7.9 (2015-04-01)
 
