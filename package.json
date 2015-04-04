@@ -63,7 +63,7 @@
         "grunt-concurrent": "^1.0.0",
         "grunt-contrib-clean": "^0.6.0",
         "grunt-contrib-watch": "^0.6.1",
-        "grunt-conventional-changelog": "^1.2.0",
+        "grunt-conventional-changelog": "^1.2.1",
         "grunt-eslint": "^10.0.0",
         "grunt-jasmine-node": "valiton/grunt-jasmine-node",
         "grunt-node-inspector": "^0.1.6",
