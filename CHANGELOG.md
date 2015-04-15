@@ -1,3 +1,12 @@
+<a name"0.7.11"></a>
+### 0.7.11 (2015-04-15)
+
+
+#### Features
+
+* add variable PROTOCOL to config ([430c38c8](https://github.com/litixsoft/baboon-backend/commit/430c38c8))
+
+
 <a name"0.7.10"></a>
 ### 0.7.10 (2015-04-04)
 
