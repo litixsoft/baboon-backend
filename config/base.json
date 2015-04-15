@@ -4,6 +4,7 @@
         "LxAuth.js": true,
         "app.js" : true
     },
+    "PROTOCOL": "http",
     "SOCKET_ENABLED": true,
     "LX_MONGODB": [
         {

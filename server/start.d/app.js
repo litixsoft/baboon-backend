@@ -33,9 +33,38 @@ module.exports = function (options, next) {
 
     // Express application
     var app = express();
+    var server;
 
     // Http server
-    var server = require('http').createServer(app);
+    if (options.config.PROTOCOL === 'http') {
+        server = require('http').createServer(app);
+    } else {
+        var fs = require('fs');
+        var path = require('path');
+        var constants = require('constants');
+        var serverOptions = {
+            key: fs.readFileSync(path.join(process.cwd(), 'server', 'ssl', 'ssl.key')),
+            cert: fs.readFileSync(path.join(process.cwd(), 'server', 'ssl', 'ssl.crt')),
+
+            // https://gist.github.com/3rd-Eden/715522f6950044da45d8
+
+            // This is the default secureProtocol used by Node.js, but it might be
+            // sane to specify this by default as it's required if you want to
+            // remove supported protocols from the list. This protocol supports:
+            //
+            // - SSLv2, SSLv3, TLSv1, TLSv1.1 and TLSv1.2
+            //
+            secureProtocol: 'SSLv23_method',
+
+            //
+            // Supply `SSL_OP_NO_SSLv3` constant as secureOption to disable SSLv3
+            // from the list of supported protocols that SSLv23_method supports.
+            //
+            secureOptions: constants.SSL_OP_NO_SSLv3 || constants.SSL_OP_NO_SSLv2
+        };
+
+        server = require('https').createServer(serverOptions, app);
+    }
 
     // Configure Express
     app.use(bodyParser.json());
