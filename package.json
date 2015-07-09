@@ -17,7 +17,7 @@
     "bugs": {
         "url": "https://github.com/litixsoft/baboon-backend/issues"
     },
-    "license": "The MIT License (MIT)",
+    "license": "MIT",
     "licenses": [
         {
             "type": "MIT",
