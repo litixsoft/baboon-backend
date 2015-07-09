@@ -1,3 +1,14 @@
+<a name"0.7.12"></a>
+### 0.7.12 (2015-07-09)
+
+
+#### Features
+
+* **LxMail:**
+  * do not return new object in configureMail() ([5cfe6e2b](https://github.com/litixsoft/baboon-backend/commit/5cfe6e2b))
+  * do not return new object in configureMail() ([c8498401](https://github.com/litixsoft/baboon-backend/commit/c8498401))
+
+
 <a name"0.7.11"></a>
 ### 0.7.11 (2015-04-15)
 
