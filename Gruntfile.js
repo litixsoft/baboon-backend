@@ -163,7 +163,7 @@ module.exports = function (grunt) {
         // Shell commands for jasmine, coverage, reports and tests
         shell: {
             coverage: {
-                command: 'node node_modules/istanbul/lib/cli.js cover --dir build/reports/coverage node_modules/grunt-jasmine-node/node_modules/jasmine-node/bin/jasmine-node -- test/ --forceexit',
+                command: 'node node_modules/istanbul/lib/cli.js cover --dir build/reports/coverage node_modules/jasmine-node/bin/jasmine-node -- test/ --forceexit',
                 options: {
                     async: false
                 }
