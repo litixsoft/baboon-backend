@@ -37,7 +37,8 @@
         "node": ">=0.10.0"
     },
     "scripts": {
-        "start": "export DEBUG=* node baboon-backend.js",
+        "start": "DEBUG=* CONFIG=development NODE_ENV=development node baboon-backend.js",
+        "demo": "DEBUG=* CONFIG=demo NODE_ENV=development node baboon-backend.js",
         "test": "grunt test",
         "check": "npm outdated"
     },
