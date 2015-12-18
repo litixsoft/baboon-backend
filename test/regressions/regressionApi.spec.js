@@ -13,7 +13,7 @@ var root = path.join(__dirname, '..', '..');
 var config = new baboon.LxConfig(root);
 var lxMongoDb = baboon.lxMongoDb;
 var base = 'http://' + config.HOST + ':' + config.PORT;
-var io = require(require('path').join(process.cwd(), 'node_modules', 'socket.io', 'node_modules', 'socket.io-client'));
+var io = require('socket.io-client');
 var isRunning = false;
 var socket;
 var server;
@@ -27,7 +27,7 @@ var restOptions = {
  * Create Test data for database
  * @param cb
  */
-function setTestData (cb) {
+function setTestData(cb) {
 
     // Create user data
     var testData = require(path.join(__dirname, '../', 'fixtures', 'test-data.json'));
@@ -71,9 +71,9 @@ function setTestData (cb) {
  * Connect to Websocket
  * @param cb
  */
-function getSocket (cb) {
+function getSocket(cb) {
 
-    socket = io.connect(base, {'reconnection': false});
+    socket = io.connect(base, { reconnection: false });
 
     var engine = socket.io.engine;
 
@@ -93,7 +93,7 @@ function getSocket (cb) {
  * Get server instance
  * @param cb
  */
-function getServer (cb) {
+function getServer(cb) {
 
     // Check server is running
     if (isRunning) {

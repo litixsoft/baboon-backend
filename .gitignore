@@ -1,6 +1,9 @@
 .idea
+.vscode
+
 build
 config/development.json
 config/production.json
 config/test.json
 node_modules
+typings

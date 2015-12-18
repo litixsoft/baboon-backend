@@ -27,7 +27,7 @@ var restOptions = {
  * Create Test data for database
  * @param cb
  */
-function setTestData (cb) {
+function setTestData(cb) {
 
     // Create user data
     var testData = require(path.join(__dirname, '../', 'fixtures', 'test-data.json'));
@@ -71,9 +71,9 @@ function setTestData (cb) {
  * Connect to Websocket
  * @param cb
  */
-function getSocket (cb) {
+function getSocket(cb) {
 
-    socket = io.connect(base, {'reconnection': false});
+    socket = io.connect(base, { reconnection: false });
 
     var engine = socket.io.engine;
 
@@ -93,7 +93,7 @@ function getSocket (cb) {
  * Get server instance
  * @param cb
  */
-function getServer (cb) {
+function getServer(cb) {
 
     // Check server is running
     if (isRunning) {
@@ -179,7 +179,7 @@ describe('Regression API tests', function () {
                     done();
                 });
 
-                setTimeout(function(){
+                setTimeout(function () {
                     expect(1).toBe(1);
                     done();
                 }, 1000);
@@ -193,7 +193,7 @@ describe('Regression API tests', function () {
                 });
                 socket.emit('awesomeThings', {});
 
-                setTimeout(function(){
+                setTimeout(function () {
                     expect(1).toBe(1);
                     done();
                 }, 1000);

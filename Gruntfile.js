@@ -198,8 +198,15 @@ module.exports = function (grunt) {
                 src: ['test/']
             }
         },
-        changelog: {
-            options: {}
+        conventionalChangelog: {
+            options: {
+                changelogOpts: {
+                    preset: 'angular'
+                }
+            },
+            release: {
+                src: 'CHANGELOG.md'
+            }
         },
         bump: {
             options: {

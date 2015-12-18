@@ -1,18 +1,21 @@
+sude: false
 services:
-- mongodb
+  - mongodb
 language: node_js
 notifications:
   slack:
     secure: DQze6XL83q17MvFwpOJFpZf7MJaMb9+CfXRrFd4ULwJI6vUhrrAfMALnvB70kMgcX6lyb5L4hyAr9Fn/YnGGZ5dY8J5eSinNG3k41LGNKzmay11bbDwRmx3g9ENiIMdNg1ebIz758dqcVZOWBqwd/ov/CZty4XKSskxEG7E61Kk=
 node_js:
-- '0.10'
-- '0.11'
-- '0.12'
-- 'iojs'
+  - '0.10'
+  - '0.11'
+  - '0.12'
+  - 'iojs'
+  - '4'
+  - '5'
 before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- npm install -g grunt-cli
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - npm install -g grunt-cli
 matrix:
   allow_failures:
-  - node_js: '0.11'
+    - node_js: '0.11'

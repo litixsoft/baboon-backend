@@ -5,9 +5,12 @@
 .idea
 .jshintrc
 .travis.yml
+
 baboon-backend.js
 Gruntfile.js
+jsconfig.json
 validate-commit-msg.js
+
 api/
 config/
 build/
