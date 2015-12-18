@@ -1,7 +1,7 @@
 <a name="0.7.13"></a>
 ## [0.7.13](https://github.com/litixsoft/baboon-backend/compare/v0.7.12...v0.7.13) (2015-12-18)
 
-
+* update dependencies
 
 
 <a name"0.7.12"></a>
