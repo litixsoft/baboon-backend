@@ -1,3 +1,13 @@
+<a name="0.7.14"></a>
+## [0.7.14](https://github.com/litixsoft/baboon-backend/compare/v0.7.13...v0.7.14) (2016-04-12)
+
+
+### Features
+
+* **LxConfig:** ignore file ending when loading config files ([d69d7b5](https://github.com/litixsoft/baboon-backend/commit/d69d7b5))
+
+
+
 <a name="0.7.13"></a>
 ## [0.7.13](https://github.com/litixsoft/baboon-backend/compare/v0.7.12...v0.7.13) (2015-12-18)
 
