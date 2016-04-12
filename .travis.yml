@@ -2,6 +2,9 @@ sudo: false
 services:
   - mongodb
 language: node_js
+cache:
+  directories:
+    - node_modules
 notifications:
   slack:
     secure: DQze6XL83q17MvFwpOJFpZf7MJaMb9+CfXRrFd4ULwJI6vUhrrAfMALnvB70kMgcX6lyb5L4hyAr9Fn/YnGGZ5dY8J5eSinNG3k41LGNKzmay11bbDwRmx3g9ENiIMdNg1ebIz758dqcVZOWBqwd/ov/CZty4XKSskxEG7E61Kk=
