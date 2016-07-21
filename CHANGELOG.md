@@ -1,3 +1,23 @@
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/litixsoft/baboon-backend/compare/v0.7.14...v0.8.0) (2016-07-21)
+
+
+### Bug Fixes
+
+* add param 'digest' to crypto.pbkdf2() to prevent deprecation warning ([784553b](https://github.com/litixsoft/baboon-backend/commit/784553b))
+
+
+### Features
+
+* drop support for node.js 0.10 ([1636441](https://github.com/litixsoft/baboon-backend/commit/1636441))
+
+
+### BREAKING CHANGES
+
+* Node.js 0.10 is no longer supported
+
+
+
 <a name="0.7.14"></a>
 ## [0.7.14](https://github.com/litixsoft/baboon-backend/compare/v0.7.13...v0.7.14) (2016-04-12)
 
