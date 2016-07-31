@@ -1,3 +1,13 @@
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/litixsoft/baboon-backend/compare/v0.8.0...v0.8.1) (2016-07-31)
+
+
+### Features
+
+* loosen strict dependency to mongodb ([0fe3809](https://github.com/litixsoft/baboon-backend/commit/0fe3809))
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/litixsoft/baboon-backend/compare/v0.7.14...v0.8.0) (2016-07-21)
 
