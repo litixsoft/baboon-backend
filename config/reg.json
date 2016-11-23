@@ -1,6 +1,6 @@
 {
     "STARTUP": {
-        "LxAuth.js": false
+        "lxAuth.js": false
     },
     "LX_MONGODB": [
         {

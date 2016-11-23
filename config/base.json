@@ -1,7 +1,7 @@
 {
     "STARTUP": {
         "lxMongoDb.js": true,
-        "LxAuth.js": true,
+        "lxAuth.js": true,
         "app.js" : true
     },
     "PROTOCOL": "http",
