@@ -21,6 +21,9 @@
     "API_KEYS": [
         {"key": "<<YOUR_API_KEY_HERE>>"}
     ],
+    "MAIL": {
+
+    },
     "CONFIRMATION_EXPIRED_IN_DAYS": 30,
     "PUBLIC_USER_ROLE": "Guest"
 }
