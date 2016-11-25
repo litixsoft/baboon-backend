@@ -46,17 +46,20 @@ module.exports = function (options) {
             }
 
             req.user = user;
-            var hasAccess = options.auth.checkAccessToRoute(req.route.path, user.acl);
+            var hasAccess = options.auth.checkAccessToRoute(req.route.path, req.route.methods, user.acl);
 
             if (hasAccess) {
                 next();
             } else {
-                next(new options.errors.AccessError());
+                next(new options.errors.AccessError('ERROR_NO_ACCESS_TO_ROUTE'));
             }
         });
     };
 
     self.errorHandler = function (err, req, res, next) {
+        // do not remove next param, it is required by express
+        next = null;
+
         var status = 500;
         var message = 'Internal server error';
 
@@ -67,12 +70,9 @@ module.exports = function (options) {
 
         // Check server mode
         if (options.config.NODE_ENV === 'development' || options.config.NODE_ENV === 'test') {
-
             // Return complete error
             res.status(err.status).json(err);
-
         } else {
-
             // Production mode, delete the stack, set message to client message
             err.stack = null;
             err.message = err.clientMessage || err.message;
