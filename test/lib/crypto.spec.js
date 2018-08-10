@@ -6,7 +6,7 @@ describe('LxCrypto', function () {
     describe('.hashWithRandomSalt()', function () {
         it('should hash the password', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(typeof res.salt).toBe('string');
                 expect(res.salt.length).toBeGreaterThan(0);
@@ -153,7 +153,7 @@ describe('LxCrypto', function () {
     describe('.compare()', function () {
         it('should compare a password with a hash', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -169,7 +169,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the password is wrong', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -185,7 +185,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the password is empty', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -201,7 +201,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the password is a number', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -218,7 +218,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the password is null', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -235,7 +235,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the password is undefined', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -252,7 +252,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the salt is a number', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -269,7 +269,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the salt is a null', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
@@ -286,7 +286,7 @@ describe('LxCrypto', function () {
 
         it('should return false when the salt is a null', function (done) {
             sut.hashWithRandomSalt('test', function (err, res) {
-                expect(err).toBeUndefined();
+                expect(err).toBeNull();
                 expect(res.salt).toBeDefined();
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();

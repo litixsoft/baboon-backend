@@ -1,14 +1,14 @@
 {
     "name": "baboon-backend",
     "description": "REST/Socket.io API backend server, based on NodeJS - Express.",
-    "version": "0.8.1",
+    "version": "0.10.0",
     "homepage": "https://github.com/litixsoft/baboon-backend",
     "author": "Litixsoft GmbH <info@litixsoft.de> (http://www.litixsoft.de)",
     "maintainers": [
+        "Thomas Scheibe <th.scheibe@litixsoft.de>",
         "Timo Liebetrau <t.liebetrau@litixsoft.de>",
         "Marco Kannenberg <m.kannenberg@litixsoft.de>",
-        "Mike Alig <m.alig@litixsoft.de>",
-        "Andreas Krummsdorf <a.krummsdorf@litixsoft.de>"
+        "Mike Alig <m.alig@litixsoft.de>"
     ],
     "repository": {
         "type": "git",
@@ -34,7 +34,7 @@
     ],
     "main": "lib/index.js",
     "engines": {
-        "node": ">=0.12.0"
+        "node": ">=10.0.0"
     },
     "scripts": {
         "start": "DEBUG=* CONFIG=development NODE_ENV=development node baboon-backend.js",
@@ -43,40 +43,39 @@
         "check": "npm outdated"
     },
     "dependencies": {
-        "async": "1.5.0",
+        "async": "2.0.1",
         "debug": "2.2.0",
-        "grunt": "1.0.1",
-        "lodash": "4.14.1",
+        "grunt": "^1.0.3",
+        "jwt-simple": "0.5.0",
+        "lodash": "^4.17.10",
         "lx-helpers": "0.5.1",
         "lx-valid": "1.2.0",
         "method-override": "2.3.6",
-        "mongodb": "^2.2.4",
+        "mongodb": "^2.2.36",
         "nodemailer": "2.5.0",
         "nodemailer-html-to-text": "2.1.0",
         "nodemailer-pickup-transport": "0.1.1",
         "nodemailer-smtp-pool": "2.7.0",
-        "nodemailer-smtp-transport": "2.6.0",
-        "jwt-simple": "0.5.0"
+        "nodemailer-smtp-transport": "2.6.0"
     },
     "devDependencies": {
-        "body-parser": "1.15.2",
+        "body-parser": "^1.18.3",
         "cors": "2.7.1",
-        "express": "4.14.0",
+        "express": "^4.16.3",
         "grunt-bump": "0.8.0",
         "grunt-concurrent": "2.3.0",
         "grunt-contrib-clean": "1.0.0",
-        "grunt-contrib-watch": "1.0.0",
+        "grunt-contrib-watch": "^1.1.0",
         "grunt-conventional-changelog": "6.1.0",
         "grunt-eslint": "17.3.1",
         "grunt-jasmine-node": "valiton/grunt-jasmine-node",
-        "grunt-node-inspector": "0.4.2",
         "grunt-nodemon": "0.4.2",
         "grunt-open": "0.2.3",
         "grunt-shell-spawn": "0.3.10",
-        "istanbul": "0.4.4",
+        "istanbul": "^0.4.5",
         "jasmine-node": "1.14.5",
         "load-grunt-tasks": "3.5.0",
-        "morgan": "1.7.0",
+        "morgan": "^1.9.0",
         "node-rest-client": "1.5.1",
         "open": "0.0.5",
         "socket.io": "1.4.8",

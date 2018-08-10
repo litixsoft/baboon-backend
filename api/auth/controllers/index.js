@@ -30,7 +30,7 @@ module.exports = function (injects) {
      * @param b
      * @returns {number}
      */
-    function dateDiffInDays (a, b) {
+    function dateDiffInDays(a, b) {
         var _MS_PER_DAY = 1000 * 60 * 60 * 24;
 
         var utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
@@ -46,19 +46,32 @@ module.exports = function (injects) {
      * @param pwd
      * @param next
      */
-    function createUser (user, pwd, next) {
-        // create password hash with random salt
-        crypto.hashWithRandomSalt(pwd, function (error, result) {
-            user.password = result.password;
-            user.password_salt = result.salt;
+    function createUser(user, pwd, next) {
+        if (!user || !pwd) {
+            return next(new Error('invalid user or pwd object'));
+        }
 
-            // create token for activation
-            crypto.randomBytes(48, function (error, buffer) {
-                user.token = buffer.toString('hex');
+        async.auto({
+            hashWithRandomSalt: function (cb) {
+                crypto.hashWithRandomSalt(pwd, cb);
+            },
+            randomBytes: function (cb) {
+                crypto.randomBytes(48, cb);
+            },
+            insertUser: ['hashWithRandomSalt', 'randomBytes', function (res, cb) {
+                user.password = res.hashWithRandomSalt.password;
+                user.password_salt = res.hashWithRandomSalt.salt;
+                user.token = res.randomBytes.toString('hex');
 
                 // save user in db
-                usersRepo.insert(user, next);
-            });
+                usersRepo.insertOne(user, cb);
+            }]
+        }, function (err, res) {
+            if (err) {
+                return next(err);
+            }
+
+            next(null, res);
         });
     }
 
@@ -68,18 +81,18 @@ module.exports = function (injects) {
      * @param options
      * @param next
      */
-    function sendMailToUser (options, next) {
+    function sendMailToUser(options, next) {
         options = options || {};
         var url = options.url + '/' + options.user.token;  // for register
-        var message = {from: config.MAIL.senderAddress, to: options.user.email, subject: options.messageSubject};
+        var message = { from: config.MAIL.senderAddress, to: options.user.email, subject: options.messageSubject };
         var file = options.file;
 
         var replaceValues = [
-            {key: '{LASTNAME}', value: options.user.lastname},
-            {key: '{FIRSTNAME}', value: options.user.firstname},
-            {key: '{EMAIL}', value: options.user.email},
-            {key: '{URL}', value: url},
-            {key: '{PASSWORD}', value: options.user.password}
+            { key: '{LASTNAME}', value: options.user.lastname },
+            { key: '{FIRSTNAME}', value: options.user.firstname },
+            { key: '{EMAIL}', value: options.user.email },
+            { key: '{URL}', value: url },
+            { key: '{PASSWORD}', value: options.user.password }
         ];
 
         mail.sendMailFromTemplate(message, path.join(file, file + '.html'), path.join(file, file + '.txt'), replaceValues, next);
@@ -91,29 +104,43 @@ module.exports = function (injects) {
      * @param data
      * @param next
      */
-    function resetPassword (data, next) {
-        var err;
+    function resetPassword(data, next) {
+        async.auto({
+                getUser: function (cbAsync) {
+                    usersRepo.findOne({ email: data.email }, { fields: ['_id', 'password', 'salt'] }, function (errFind, resUser) {
+                        if (errFind || !resUser) {
+                            var err = new Error('No user found in db');
+                            err.status = 404;
 
-        usersRepo.findOne({email: data.email}, {fields: ['_id', 'password', 'salt']}, function (error, userResult) {
-            if (error || !userResult) {
-                err = new Error('No user found in db');
-                err.status = 404;
-                return next(err);
-            }
-
-            crypto.randomString(6, function (error, randomString) {
-                crypto.hashWithRandomSalt(randomString, function (error, result) {
-                    usersRepo.update({_id: userResult._id}, {
-                        $set: {
-                            password: result.password,
-                            password_salt: result.salt
+                            return cbAsync(err);
                         }
-                    }, function (error) {
-                        next(error, randomString);
+
+                        return cbAsync(null, resUser);
                     });
-                });
-            });
-        });
+                },
+                randString: ['getUser', function (cbAsync) {
+                    crypto.randomString(6, cbAsync);
+                }],
+                hashPassword: ['getUser', 'randString', function (resAsync, cbAsync) {
+                    crypto.hashWithRandomSalt(resAsync.randString, cbAsync);
+                }],
+                updateUser: ['hashPassword', function (resAsync, cbAsync) {
+                    usersRepo.updateOne({ _id: resAsync.getUser._id }, {
+                        $set: {
+                            password: resAsync.hashPassword.password,
+                            password_salt: resAsync.hashPassword.salt
+                        }
+                    }, cbAsync);
+                }]
+            },
+            function (err, res) {
+                if (err) {
+                    return next(err);
+                }
+
+                next(null, res.randString);
+            }
+        );
     }
 
     /**
@@ -124,7 +151,7 @@ module.exports = function (injects) {
      * @param res
      * @param next
      */
-    self.login = function index (req, res, next) {
+    self.login = function index(req, res, next) {
         if (!req.body || !req.body.email || !req.body.password) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -136,7 +163,7 @@ module.exports = function (injects) {
         var email = req.body.email.trim();
         var password = req.body.password.trim();
 
-        usersRepo.find({email: email}, {
+        usersRepo.findOne({ email: email }, {
             fields: {
                 _id: 1,
                 email: 1,
@@ -146,41 +173,40 @@ module.exports = function (injects) {
                 rights: 1,
                 is_active: 1
             }
-        }).toArray(function (err, success) {
-            if (err) {
-                return next(err);
+        }, function (errFind, user) {
+            if (errFind) {
+                return next(errFind);
             }
 
-            if (success && success.length > 0) {
-                var user = success[0];
-
-                if (!user.is_active) {
-                    return next(new errors.AccessError('Login Failed, account is inactive'));
-                }
-
-                // check password
-                crypto.compare(password, user.password, user.password_salt, function (error, result) {
-                    if (!error && result) {
-                        if (result.is_equal) {
-                            // delete hash, salt and is_active from user
-                            delete user.password;
-                            delete user.password_salt;
-                            delete user.is_active;
-
-                            auth.createToken(user.email, user, function (error, result) {
-                                // send web token to client
-                                return res.status(200).json(result);
-                            });
-                        } else {
-                            return next(new errors.AccessError());
-                        }
-                    } else {
-                        return next(new errors.AccessError('Login Failed, unknown error in compare password'));
-                    }
-                });
-            } else {
+            if (!user) {
                 return next(new errors.AccessError('User not found: ' + email));
             }
+
+            if (!user.is_active) {
+                return next(new errors.AccessError('Login Failed, account is inactive'));
+            }
+
+            // check password
+            crypto.compare(password, user.password, user.password_salt, function (errCompare, result) {
+                if (errCompare || !result || !result.is_equal) {
+                    return next(new errors.AccessError('Login Failed, unknown error in compare password'));
+
+                }
+
+                // delete hash, salt and is_active from user
+                delete user.password;
+                delete user.password_salt;
+                delete user.is_active;
+
+                auth.createToken(user.email, user, function (errToken, resToken) {
+                    if (errToken) {
+                        return next(new errors.AccessError());
+                    }
+
+                    // send web token to client
+                    return res.status(200).json(resToken);
+                });
+            });
         });
     };
 
@@ -193,7 +219,7 @@ module.exports = function (injects) {
      * @param next
      * @returns {*}
      */
-    self.register = function index (req, res, next) {
+    self.register = function index(req, res, next) {
         if (!req.body) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -205,44 +231,45 @@ module.exports = function (injects) {
         var confirmationUrl = req.body.confirmationUrl;
 
         async.auto({
-            getPublicRole: function (next) {
-                rolesRepo.findOne({name: config.PUBLIC_USER_ROLE}, next);
+            getPublicRole: function (cbAsync) {
+                rolesRepo.findOne({ name: config.PUBLIC_USER_ROLE }, cbAsync);
             },
-            validateUser: ['getPublicRole', function (next, results) {
-                repo.user.validate(req.body, function (error, result) {
+            validateUser: ['getPublicRole', function (resAsync, cbAsync) {
+                repo.user.validate(req.body, function (error, validateResults) {
                     if (error) {
-                        return next(new errors.BadRequestError('Unknown validation error by users.register'));
+                        return cbAsync(new errors.BadRequestError('Unknown validation error by users.register'));
                     }
 
-                    if (result.valid) {
+                    if (validateResults.valid) {
                         var user = {
                             lastname: req.body.lastName,
                             firstname: req.body.firstName,
                             email: req.body.email,
                             is_active: false,
                             register_date: new Date(),
-                            roles: [results.getPublicRole._id],
+                            roles: [resAsync.getPublicRole._id],
                             rights: []
                         };
-                        next(null, user);
-                    } else {
-                        // throw validation error because user object is not valid
-                        return next(new errors.ValidationError(result.errors));
-                    }
-                });
-            }],
-            createUser: ['validateUser', function (next, results) {
-                createUser(results.validateUser, req.body.password, function (error, result) {
-                    if (!result) {
-                        return next(error || new errors.BadRequestError('Unknown db error by users.register'));
+
+                        return cbAsync(null, user);
                     }
 
-                    next(null, result[0]);
+                    // throw validation error because user object is not valid
+                    return cbAsync(new errors.ValidationError(validateResults.errors));
                 });
             }],
-            sendMailToUser: ['createUser', function (next, results) {
+            createUser: ['validateUser', function (resAsync, cbAsync) {
+                createUser(resAsync.validateUser, req.body.password, function (error, result) {
+                    if (error || !result) {
+                        return cbAsync(error || new errors.BadRequestError('Unknown db error by users.register'));
+                    }
+
+                    cbAsync(null, result[0]);
+                });
+            }],
+            sendMailToUser: ['createUser', function (resAsync, cbAsync) {
                 var options = {
-                    user: results.createUser,
+                    user: resAsync.createUser,
                     url: confirmationUrl,
                     messageSubject: 'Register',
                     file: 'register'
@@ -250,11 +277,11 @@ module.exports = function (injects) {
 
                 sendMailToUser(options, function (error) {
                     if (error) {
-                        return next(new errors.BadRequestError('Could not send email'));
+                        return cbAsync(new errors.BadRequestError('Could not send email'));
                     }
 
-                    res.status(200).json({success: true});
-                    next();
+                    res.status(200).json({ success: true });
+                    cbAsync();
                 });
             }]
         }, next);
@@ -268,43 +295,45 @@ module.exports = function (injects) {
      * @param res
      * @param next
      */
-    self.confirmRegister = function index (req, res, next) {
-        var err;
+    self.confirmRegister = function index(req, res, next) {
+        if (!req.params || !req.params.id) {
+            return next(new errors.BadRequestError('Missing req.param'));
+        }
 
         // get user with token from req
-        usersRepo.findOne({token: req.params.id}, {fields: ['_id', 'register_date', 'is_active']}, function (error, result) {
-            if (error) {
+        usersRepo.findOne({ token: req.params.id }, { fields: ['_id', 'register_date', 'is_active'] }, function (errFind, resFind) {
+            if (errFind) {
                 return next(new errors.BadRequestError('Unknown db error by users.confirm'));
             }
 
-            if (!result) {
+            var err;
+
+            if (!resFind) {
                 err = new Error('No user found in db');
                 err.status = 404;
                 return next(err);
             }
 
             // check if period of confirmation is expired
-            if (dateDiffInDays(new Date(), result.register_date) > config.CONFIRMATION_EXPIRED_IN_DAYS) {
+            if (dateDiffInDays(new Date(), resFind.register_date) > config.CONFIRMATION_EXPIRED_IN_DAYS) {
                 err = new Error('The period of the confirmation has expired.');
                 err.status = 409;
-                next(err);
-            } else {
-                usersRepo.update(
-                    {_id: result._id},
-                    {
-                        $set: {is_active: true},
-                        $unset: {token: 1}
-                    },
-                    {multi: false},
-                    function (error, updateResult) {
-                        if (error || !updateResult) {
-                            return next(new errors.BadRequestError('Unknown db error by users.confirm'));
-                        }
-
-                        res.status(200).json({success: true});
-                    });
+                return next(err);
             }
 
+            usersRepo.updateOne(
+                { _id: resFind._id },
+                {
+                    $set: { is_active: true },
+                    $unset: { token: 1 }
+                },
+                function (errUpdate, updateResult) {
+                    if (errUpdate || !updateResult) {
+                        return next(new errors.BadRequestError('Unknown db error by users.confirm'));
+                    }
+
+                    res.status(200).json({ success: true });
+                });
         });
     };
 
@@ -316,19 +345,18 @@ module.exports = function (injects) {
      * @param res
      * @param next
      */
-    self.renewConfirmationMail = function index (req, res, next) {
+    self.renewConfirmationMail = function index(req, res, next) {
         if (!req.body) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
 
-        usersRepo.findAndModify(
-            {token: req.body.id},                   // query
-            {},                                     // sort
-            {$set: {register_date: new Date()}},    // update
-            {new: true},                            // return new result
-            function (error, result) {
-                if (error) {
-                    return next(error || new errors.BadRequestError('Unknown db error by users.confirm'));
+        usersRepo.findOneAndUpdate(
+            { token: req.body.id },                     // query
+            { $set: { register_date: new Date() } },    // update
+            { returnOriginal: false },                  // return new result
+            function (errFindUpdate, result) {
+                if (errFindUpdate) {
+                    return next(errFindUpdate || new errors.BadRequestError('Unknown db error by users.confirm'));
                 }
 
                 var options = {
@@ -338,12 +366,12 @@ module.exports = function (injects) {
                     file: 'register'
                 };
 
-                sendMailToUser(options, function (error) {
-                    if (error) {
-                        return next(error || new errors.BadRequestError('Could not send mail'));
+                sendMailToUser(options, function (errMailSender) {
+                    if (errMailSender) {
+                        return next(errMailSender || new errors.BadRequestError('Could not send mail'));
                     }
 
-                    res.status(200).json({success: true});
+                    res.status(200).json({ success: true });
                 });
             }
         );
@@ -358,7 +386,7 @@ module.exports = function (injects) {
      * @param next
      * @returns {*}
      */
-    self.resetPassword = function index (req, res, next) {
+    self.resetPassword = function index(req, res, next) {
         if (!req.body) {
             return next(new errors.BadRequestError('Missing req.body'));
         }
@@ -382,24 +410,24 @@ module.exports = function (injects) {
             return next(new errors.ValidationError(error));
         }
 
-        resetPassword(req.body, function (error, result) {
-            if (error) {
+        resetPassword(req.body, function (errPasswordReset, result) {
+            if (errPasswordReset) {
                 // throw error while trying to save the new user
-                return next(error || new errors.BadRequestError('Unknown db error by users.resetPassword'));
+                return next(errPasswordReset || new errors.BadRequestError('Unknown db error by users.resetPassword'));
             }
 
             var options = {
-                user: {email: req.body.email, password: result},
+                user: { email: req.body.email, password: result },
                 messageSubject: 'Your new password',
                 file: 'password'
             };
 
-            sendMailToUser(options, function (error) {
-                if (error) {
-                    return next(error || new errors.BadRequestError('Could not send mail'));
+            sendMailToUser(options, function (errMailSender) {
+                if (errMailSender) {
+                    return next(errMailSender || new errors.BadRequestError('Could not send mail'));
                 }
 
-                res.status(200).json({success: true});
+                res.status(200).json({ success: true });
             });
         });
     };
@@ -419,7 +447,7 @@ module.exports = function (injects) {
             }
 
             if (result && result.result.n > 0) {
-                res.status(200).json({success: true});
+                res.status(200).json({ success: true });
             } else {
                 next(new errors.DataOperationError('Logout Failed', req.headers['x-access-token'], 'token', result));
             }

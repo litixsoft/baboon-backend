@@ -39,21 +39,23 @@ module.exports = function (injects) {
      * @param next
      */
     self.getById = function getById(req, res, next) {
-        if (!req.params || !req.params.id) {
+        var err;
 
-            var err = new Error('Missing req.params or req.params.id');
+        if (!req.params || !req.params.id) {
+            err = new Error('Missing req.params or req.params.id');
             err.status = 400;
+
             return next(err);
         }
 
         var id = db.convertToMongoId(req.params.id);
-        users.find({_id: id}).toArray(function (err, success) {
 
+        users.find({_id: id}).toArray(function (errFind, success) {
             if (success) {
                 return res.status(200).json(success);
             }
 
-            err = err || new Error('Unknown db error by users.find');
+            err = errFind || new Error('Unknown db error by users.find');
             err.status = 400;
 
             return next(err);

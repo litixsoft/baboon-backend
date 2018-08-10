@@ -2,9 +2,12 @@
 > REST and Socket.io API backend server, based on NodeJS and ExpressJS.
 
 > [![npm](http://img.shields.io/npm/v/baboon-backend.svg)](https://www.npmjs.org/package/baboon-backend)
-[![Build Status](https://secure.travis-ci.org/litixsoft/baboon-backend.svg?branch=master)](https://travis-ci.org/litixsoft/baboon-backend) 
+[![Build Status](https://secure.travis-ci.org/litixsoft/baboon-backend.svg?branch=0.10.0_unstable)](https://travis-ci.org/litixsoft/baboon-backend) 
 [![david-dm](https://david-dm.org/litixsoft/baboon-backend.svg?theme=shields.io)](https://david-dm.org/litixsoft/baboon-backend/) 
 [![david-dm](https://david-dm.org/litixsoft/baboon-backend/dev-status.svg?theme=shields.io)](https://david-dm.org/litixsoft/baboon-backend#info=devDependencies&view=table)
+
+
+    Baboon-Backend 0.10.X works only with Node 10.X.X. Just bug fixing, No new features :-( .
 
 Baboon backend server is a toolkit to create backends on the basis of NodeJS and ExpressJS with an API which can be accessed via REST and WebSocket.
 The toolkit is independent of any front-end and can be developed separately. The application structure is already set and ready to run. 
@@ -14,7 +17,6 @@ Especially helpful in development mode is the live-reload, and the already built
 
 Baboon backend is completely open source and available under the MIT license. If you need commercial support, you send an email to us. [support@litixsoft.de](mailto:support@litixsoft.de)
 
-* Baboon-Backend project generator https://github.com/litixsoft/generator-baboon-backend
 * Issues: https://github.com/litixsoft/baboon-backend/issues
 
 ## Features
@@ -27,7 +29,6 @@ Baboon backend is completely open source and available under the MIT license. If
 * Application is easy to test
 * Test Suite jasmine-node integrated
 * High test coverage with regression tests
-* Debugging with nodemon and node-inspector
 * MongoDB integration with lxMongoDb or native driver
 * Coverage reports integrated
 * Grunt with development, test and report tasks
@@ -210,4 +211,4 @@ Baboon backend is a rolling release and is constantly evolving. Roadmap we list 
 [Litixsoft GmbH](http://www.litixsoft.de)
 
 ### License
-Copyright (c) 2014 Litixsoft GmbH Licensed under the MIT license.
+Copyright (c) 2014-2018 Litixsoft GmbH Licensed under the MIT license.
