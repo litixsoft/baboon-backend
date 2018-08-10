@@ -57,7 +57,7 @@
         "no-redeclare": 2,
         "no-regex-spaces": 2,
         "no-self-compare": 2,
-        "no-shadow": 1,
+        "no-shadow": 0,
         "no-sparse-arrays": 2,
         "no-throw-literal": 2,
         "no-trailing-spaces": 2,

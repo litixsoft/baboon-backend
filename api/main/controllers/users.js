@@ -50,7 +50,7 @@ module.exports = function (injects) {
 
         var id = db.convertToMongoId(req.params.id);
 
-        users.find({_id: id}).toArray(function (errFind, success) {
+        users.find({ _id: id }).toArray(function (errFind, success) {
             if (success) {
                 return res.status(200).json(success);
             }

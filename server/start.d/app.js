@@ -68,7 +68,7 @@ module.exports = function (options, next) {
 
     // Configure Express
     app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded({extended: true}));
+    app.use(bodyParser.urlencoded({ extended: true }));
     app.use(methodOverride());
     app.use(cors());
     app.use(logger('dev'));
@@ -113,7 +113,10 @@ module.exports = function (options, next) {
 
     // Make lxSocketRouter placeholder object with mock function.
     // When SOCKET_ENABLED true then overwrite this object.
-    var lxSocketRouter = {on: function () {}};
+    var lxSocketRouter = {
+        on: function () {
+        }
+    };
 
     // Check if socket enabled, when enabled create instance
     // of lxSocketRouter and register the connection event

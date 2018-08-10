@@ -44,8 +44,8 @@ module.exports = function (injects) {
      * @param req
      * @param res
      */
-    self.index = function index (req, res) {
-        res.status(200).send({message: 'It work\'s, ' + config.NAME + ' server version: v' + config.VERSION});
+    self.index = function index(req, res) {
+        res.status(200).send({ message: 'It work\'s, ' + config.NAME + ' server version: v' + config.VERSION });
     };
 
     /**
@@ -55,7 +55,7 @@ module.exports = function (injects) {
      * @param req
      * @param res
      */
-    self.awesomeThings = function awesomeThings (req, res) {
+    self.awesomeThings = function awesomeThings(req, res) {
         res.status(200).json(thingsArr);
     };
 
@@ -67,11 +67,11 @@ module.exports = function (injects) {
      * @param socket
      * @param callback
      */
-    self.socket_awesomeThings = function socket_awesomeThings (data, socket, callback) {
+    self.socket_awesomeThings = function socket_awesomeThings(data, socket, callback) {
         if (callback) {
-            callback(null, {status: 200, data: thingsArr});
+            callback(null, { status: 200, data: thingsArr });
         } else {
-            socket.emit('awesomeThings', {status: 200, data: thingsArr});
+            socket.emit('awesomeThings', { status: 200, data: thingsArr });
         }
     };
 

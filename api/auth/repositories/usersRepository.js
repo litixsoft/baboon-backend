@@ -4,7 +4,7 @@ module.exports = function (collection, db) {
     var self = {};
     var val = require('lx-valid');
 
-    function schema () {
+    function schema() {
         return {
             properties: {
                 _id: {
@@ -70,7 +70,7 @@ module.exports = function (collection, db) {
      */
     self.checkMail = function (doc, callback) {
         if (!doc) {
-            callback(null, {valid: true});
+            callback(null, { valid: true });
             return;
         }
 
@@ -100,7 +100,7 @@ module.exports = function (collection, db) {
                     }
                 );
             } else {
-                callback(null, {valid: true});
+                callback(null, { valid: true });
             }
         });
     };

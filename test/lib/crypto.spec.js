@@ -160,7 +160,7 @@ describe('LxCrypto', function () {
 
                 sut.compare('test', res.password, res.salt, function (err, res) {
                     expect(err).toBeNull();
-                    expect(res).toEqual({is_equal: true});
+                    expect(res).toEqual({ is_equal: true });
 
                     done();
                 });
@@ -176,7 +176,7 @@ describe('LxCrypto', function () {
 
                 sut.compare('abc', res.password, res.salt, function (err, res) {
                     expect(err).toBeNull();
-                    expect(res).toEqual({is_equal: false});
+                    expect(res).toEqual({ is_equal: false });
 
                     done();
                 });
@@ -192,7 +192,7 @@ describe('LxCrypto', function () {
 
                 sut.compare('', res.password, res.salt, function (err, res) {
                     expect(err).toBeNull();
-                    expect(res).toEqual({is_equal: false});
+                    expect(res).toEqual({ is_equal: false });
 
                     done();
                 });
