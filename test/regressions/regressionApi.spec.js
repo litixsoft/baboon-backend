@@ -73,7 +73,7 @@ function setTestData(cb) {
  */
 function getSocket(cb) {
 
-    socket = io.connect(base, { reconnection: false });
+    socket = io.connect(base, {reconnection: false});
 
     var engine = socket.io.engine;
 
@@ -138,18 +138,13 @@ describe('Regression API tests', function () {
     describe('Test API main module routes', function () {
 
         it('REST-GET: /', function (done) {
-
             client.get(base + '/', restOptions, function (data, response) {
-
-                data = JSON.parse(data);
-
                 expect(response.statusCode).toBe(200);
                 expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
                 expect(data.message).toBe('It work\'s, ' + config.NAME + ' server version: v' + config.VERSION);
 
                 done();
             });
-
         });
     });
 
@@ -161,8 +156,6 @@ describe('Regression API tests', function () {
         it('REST-GET: /awesomeThings', function (done) {
 
             client.get(base + '/awesomeThings', restOptions, function (data, response) {
-                data = JSON.parse(data);
-
                 expect(response.statusCode).toBe(200);
                 expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
 
@@ -200,10 +193,7 @@ describe('Regression API tests', function () {
     describe('Test API main module, controller users routes', function () {
 
         it('REST-GET: /user', function (done) {
-
             client.get(base + '/users', restOptions, function (data, response) {
-                data = JSON.parse(data);
-
                 expect(response.statusCode).toBe(200);
                 expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
 
@@ -216,11 +206,8 @@ describe('Regression API tests', function () {
         });
 
         it('REST-GET: /user/:id', function (done) {
-
             // Get actual ID for test
             client.get(base + '/users', restOptions, function (data, response) {
-                data = JSON.parse(data);
-
                 expect(response.statusCode).toBe(200);
                 expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
 
@@ -229,8 +216,6 @@ describe('Regression API tests', function () {
 
                 // Check with actual id
                 client.get(base + '/users/' + checkId, restOptions, function (data, response) {
-                    data = JSON.parse(data);
-
                     expect(response.statusCode).toBe(200);
                     expect(response.headers['content-type']).toBe('application/json; charset=utf-8');
 

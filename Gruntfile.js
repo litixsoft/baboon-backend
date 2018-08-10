@@ -28,7 +28,6 @@ module.exports = function (grunt) {
     require('time-grunt')(grunt);
 
     grunt.initConfig({
-
         // Set paths
         src: {
             reports: './build/reports',
@@ -88,59 +87,11 @@ module.exports = function (grunt) {
                 path: function () {
                     return path.join(__dirname, getCoverageReport('build/reports/coverage/'));
                 }
-            },
-            inspector: {
-                path: 'http://localhost:8080/debug?port=5858'
-            }
-        },
-
-        concurrent: {
-            debug: {
-                tasks: [
-                    'nodemon:debug',
-                    'node-inspector'
-                ],
-                options: {
-                    logConcurrentOutput: true
-                }
-            }
-        },
-
-        // Debugging with node inspector
-        'node-inspector': {
-            custom: {
-                options: {
-                    'web-host': 'localhost'
-                }
             }
         },
 
         // Use nodemon to run server in debug mode with an initial breakpoint
         nodemon: {
-            debug: {
-                script: 'baboon-backend.js',
-                options: {
-                    nodeArgs: ['--debug-brk'],
-                    env: {
-                        DEBUG: '*',
-                        PORT: 8081,
-                        HOST: '127.0.0.1',
-                        NODE_ENV: 'development'
-                    },
-                    callback: function (nodemon) {
-                        nodemon.on('log', function (event) {
-                            console.log(event.colour);
-                        });
-
-                        // opens browser on initial server start
-                        nodemon.on('config:update', function () {
-                            setTimeout(function () {
-                                require('open')('http://localhost:8080/debug?port=5858');
-                            }, 500);
-                        });
-                    }
-                }
-            },
             dev: {
                 script: 'baboon-backend.js',
                 options: {
@@ -175,6 +126,7 @@ module.exports = function (grunt) {
                 }
             }
         },
+
         jasmine_node: {
             options: {
                 forceExit: true,
@@ -198,6 +150,7 @@ module.exports = function (grunt) {
                 src: ['test/']
             }
         },
+
         conventionalChangelog: {
             options: {
                 changelogOpts: {
@@ -208,6 +161,7 @@ module.exports = function (grunt) {
                 src: 'CHANGELOG.md'
             }
         },
+
         bump: {
             options: {
                 commitFiles: ['.'],
@@ -222,14 +176,8 @@ module.exports = function (grunt) {
      * Serve tasks
      *
      * Task serve start server and watch
-     * Task serve:debug start server in debug mode open node-inspector
      */
-    grunt.registerTask('serve', function (target) {
-
-        if (target === 'debug') {
-            return grunt.task.run(['concurrent:debug']);
-        }
-
+    grunt.registerTask('serve', function () {
         grunt.task.run(['nodemon:dev']);
     });
 

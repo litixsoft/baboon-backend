@@ -50,7 +50,7 @@
         "lodash": "^4.17.10",
         "lx-helpers": "0.5.1",
         "lx-valid": "1.2.0",
-        "method-override": "2.3.6",
+        "method-override": "2.3.10",
         "mongodb": "^2.2.36",
         "nodemailer": "2.5.0",
         "nodemailer-html-to-text": "2.1.0",
@@ -59,7 +59,7 @@
         "nodemailer-smtp-transport": "2.6.0"
     },
     "devDependencies": {
-        "body-parser": "^1.18.3",
+        "body-parser": "1.18.3",
         "cors": "2.7.1",
         "express": "^4.16.3",
         "grunt-bump": "0.8.0",
@@ -67,19 +67,17 @@
         "grunt-contrib-clean": "1.0.0",
         "grunt-contrib-watch": "^1.1.0",
         "grunt-conventional-changelog": "6.1.0",
-        "grunt-eslint": "17.3.1",
+        "grunt-eslint": "21.0.0",
         "grunt-jasmine-node": "valiton/grunt-jasmine-node",
         "grunt-nodemon": "0.4.2",
-        "grunt-open": "0.2.3",
-        "grunt-shell-spawn": "0.3.10",
+        "grunt-shell": "^2.1.0",
         "istanbul": "^0.4.5",
-        "jasmine-node": "1.14.5",
+        "jasmine-node": "1.15.0",
         "load-grunt-tasks": "3.5.0",
         "morgan": "^1.9.0",
-        "node-rest-client": "1.5.1",
-        "open": "0.0.5",
-        "socket.io": "1.4.8",
-        "socket.io-client": "1.4.8",
+        "node-rest-client": "3.1.0",
+        "socket.io": "2.1.1",
+        "socket.io-client": "2.1.1",
         "time-grunt": "1.4.0"
     }
 }

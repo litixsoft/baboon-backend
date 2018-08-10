@@ -40,9 +40,9 @@ describe('LxCrypto', function () {
         });
 
         it('should return an error when the password is undefined', function (done) {
-            sut.hashWithRandomSalt(undefined, function (err, res) {
+            sut.hashWithRandomSalt(null, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
-                expect(err.message).toBe('Param "password" is of type undefined! Type string expected');
+                expect(err.message).toBe('Param "password" is of type null! Type string expected');
                 expect(res).toBeUndefined();
 
                 done();
@@ -84,7 +84,7 @@ describe('LxCrypto', function () {
         });
 
         it('should return an error when param length is undefined', function () {
-            sut.randomBytes(undefined, function (err, res) {
+            sut.randomBytes(null, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
                 expect(err.message).toContain('number');
                 expect(res).toBeUndefined();
@@ -134,7 +134,7 @@ describe('LxCrypto', function () {
         });
 
         it('should return an error when param length is undefined', function () {
-            sut.randomString(undefined, function (err, res) {
+            sut.randomString(null, function (err, res) {
                 expect(err instanceof TypeError).toBeTruthy();
                 expect(err.message).toContain('number');
                 expect(res).toBeUndefined();
@@ -240,9 +240,9 @@ describe('LxCrypto', function () {
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
 
-                sut.compare(undefined, res.password, res.salt, function (err, res) {
+                sut.compare(null, res.password, res.salt, function (err, res) {
                     expect(err instanceof TypeError).toBeTruthy();
-                    expect(err.message).toBe('Param "plain" is of type undefined! Type string expected');
+                    expect(err.message).toBe('Param "plain" is of type null! Type string expected');
                     expect(res).toBeUndefined();
 
                     done();
@@ -291,9 +291,9 @@ describe('LxCrypto', function () {
                 expect(res.password).toBeDefined();
                 expect(res.password === 'test').toBeFalsy();
 
-                sut.compare('test', res.password, undefined, function (err, res) {
+                sut.compare('test', res.password, null, function (err, res) {
                     expect(err instanceof TypeError).toBeTruthy();
-                    expect(err.message).toBe('Param "salt" is of type undefined! Type string expected');
+                    expect(err.message).toBe('Param "salt" is of type null! Type string expected');
                     expect(res).toBeUndefined();
 
                     done();
