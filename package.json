@@ -56,7 +56,8 @@
         "nodemailer-html-to-text": "2.1.0",
         "nodemailer-pickup-transport": "0.1.1",
         "nodemailer-smtp-pool": "2.7.0",
-        "nodemailer-smtp-transport": "2.6.0"
+        "nodemailer-smtp-transport": "2.6.0",
+        "open": "0.0.5"
     },
     "devDependencies": {
         "body-parser": "1.18.3",
@@ -70,6 +71,7 @@
         "grunt-eslint": "21.0.0",
         "grunt-jasmine-node": "valiton/grunt-jasmine-node",
         "grunt-nodemon": "0.4.2",
+        "grunt-open": "^0.2.3",
         "grunt-shell": "^2.1.0",
         "istanbul": "^0.4.5",
         "jasmine-node": "1.15.0",

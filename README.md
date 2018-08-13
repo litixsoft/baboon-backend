@@ -37,24 +37,16 @@ Baboon backend is completely open source and available under the MIT license. If
 There are several ways to install Baboon backend and use. 
 This project is a reference implementation and can be used as a template for your own project. More you can find already under [Contributing and testing](#Contributing)
 
-### We recommend the Generator for baboon-backend
-We recommend the [generator-baboon-backend](https://github.com/litixsoft/generator-baboon-backend) for the creation of a project. The installation is very easy.
+Install global dependencies grunt-cli
 
-Install global dependencies yeoman and grunt-cli
+    $ sudo npm install -g grunt-cli
+       
+Finally, create a project directory and install baboon
 
-    $ sudo npm install -g yo grunt-cli
+    $ mkdir my-project && cd my-project
+    $ git clone https://github.com/litixsoft/baboon-backend.git .
+    $ npm install
     
-Install generator-baboon-backend as global module from npm
-
-    $ sudo npm install -g generator-baboon-backend
-    
-Finally, create a project directory and initiate the generator
-
-    $ mkdir my-project && cd my-project    
-    $ yo baboon-backend
-    
-Follow the instructions of the generator and Yeoman create your application.
-
 You can run the application in live-reload mode with:
 
     $ grunt serve
@@ -62,27 +54,15 @@ You can run the application in live-reload mode with:
 Or Manual without live-reload with:
 
     $ npm start
-    
-Debug your application with:
-    
-    $ grunt debug
-    
+       
 Test your application (unit tests and jshint) with:
 
     $ grunt test   
-    
-Only unit tests without jshint:
-
-    $grunt jasmine
-    
+       
 Coverage your tests with:
 
     $grunt cover
-    
-Reports of your tests and coverage for ci systems with:
-
-    $grunt reports
-    
+       
 Release a new patch with:
 
     $ grunt release
@@ -132,22 +112,7 @@ This command is run in the background when npm start
 
     $ DEBUG=* PORT=3000 HOST=localhost NODE_ENV=development CONFIG=test PROTOCOL=http node baboon-backend.js
     
-### Debug
-We debug the application frequently about our WebStorm IDE. But you can also debug your app with nodemon and node-inspector.
-
-    $ grunt debug
-    
 ### Testing
-#### Run jshint
-Only jshint, no unit tests
-
-    $ grunt jshint
-
-#### Run unit tests
-Only unit tests, no jshint.
-
-    $ grunt jasmine
-
 #### Run all tests
 Complete testing the application with unit tests and jshint.
     
@@ -157,10 +122,6 @@ Complete testing the application with unit tests and jshint.
     
     $ grunt cover
     
-#### Run all tests with reports for ci systems
-    
-    $ grunt reports
-
 Instead of us handing out a formal style guide, simply stick to the existing programming style. Please create descriptive commit messages.
 We use a git hook to validate the commit messages against these [rules](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.uyo6cb12dt6w).
 Easily expand Baboon with your own extensions or changes in the functionality of Baboon itself. Use this workflow:
