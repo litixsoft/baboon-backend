@@ -2,7 +2,7 @@
 > REST and Socket.io API backend server, based on NodeJS and ExpressJS.
 
 > [![npm](http://img.shields.io/npm/v/baboon-backend.svg)](https://www.npmjs.org/package/baboon-backend)
-[![Build Status](https://secure.travis-ci.org/litixsoft/baboon-backend.svg?branch=0.10.0_unstable)](https://travis-ci.org/litixsoft/baboon-backend) 
+[![Build Status](https://secure.travis-ci.org/litixsoft/baboon-backend.svg?branch=master)](https://travis-ci.org/litixsoft/baboon-backend) 
 [![david-dm](https://david-dm.org/litixsoft/baboon-backend.svg?theme=shields.io)](https://david-dm.org/litixsoft/baboon-backend/) 
 [![david-dm](https://david-dm.org/litixsoft/baboon-backend/dev-status.svg?theme=shields.io)](https://david-dm.org/litixsoft/baboon-backend#info=devDependencies&view=table)
 

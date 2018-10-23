@@ -1,3 +1,13 @@
+<a name="0.10.0"></a>
+## [0.10.0](https://github.com/litixsoft/baboon-backend/compare/v0.8.1...v0.10.0) (2018-10-23)
+
+
+### Features
+
+* Node 10.X.X compatibility
+* Modules updates
+
+
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/litixsoft/baboon-backend/compare/v0.8.0...v0.8.1) (2016-07-31)
 
