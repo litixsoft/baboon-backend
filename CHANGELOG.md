@@ -7,6 +7,10 @@
 * Node 10.X.X compatibility
 * Modules updates
 
+### BREAKING CHANGES
+
+* Node.js < 10.0.0 is no longer supported
+
 
 <a name="0.8.1"></a>
 ## [0.8.1](https://github.com/litixsoft/baboon-backend/compare/v0.8.0...v0.8.1) (2016-07-31)
