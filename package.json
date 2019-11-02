@@ -57,7 +57,7 @@
         "nodemailer-pickup-transport": "0.1.1",
         "nodemailer-smtp-pool": "2.7.0",
         "nodemailer-smtp-transport": "2.6.0",
-        "open": "0.0.5"
+        "open": "7.0.0"
     },
     "devDependencies": {
         "body-parser": "1.18.3",
