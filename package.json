@@ -51,7 +51,7 @@
         "lx-helpers": "0.5.1",
         "lx-valid": "1.2.4",
         "method-override": "2.3.10",
-        "mongodb": "^2.2.36",
+        "mongodb": "^3.6.1",
         "nodemailer": "2.5.0",
         "nodemailer-html-to-text": "2.1.0",
         "nodemailer-pickup-transport": "0.1.1",
